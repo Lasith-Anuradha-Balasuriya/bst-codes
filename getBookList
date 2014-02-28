@@ -1,0 +1,38 @@
+/* Data retrieving from Binary Search Tree. This method has one parameter get title
+	of a book for retrieving. It returns a list of book objects with title witch are similar to the key title*/
+	public List getBookList(String title)
+	{		
+		readNodes(root,title);	// Calling readNodes(Node,String) method. This method will update the list bks.
+		List list = bks;		// Temporary adding bks to list
+		bks = null;				// Clear the bks
+		return list;			// Return list of books
+	}
+	
+	/* Data retrieving from Binary Search Tree. This method has two parameter to get node and get title
+	of a book for retrieving. It returns a list of book objects with title witch are similar to the key title
+	from given node making it as root*/
+	public List getBookList(Node node, String title)
+	{		
+		readNodes(node,title);	// Calling readNodes(Node,String) method. This method will update the list bks.
+		List list = bks;		// Temporary adding bks to list
+		bks = null;				// Clear the bks
+		return list;			// Return list of books
+	}
+	
+	/* reading nodes of Binary Search Tree. This method has two parameters to get node and get title
+	of a book for retrieving. It updates the bks list of book objects with title witch are similar to the key title.
+	This method use the in-order traversal method to read nodes.*/
+	public void readNodes(Node node,String booktitle)
+	{
+		// Check whether the given node is null
+		if ( node == null )		
+	    	return;
+		
+		readNodes(node.left,booktitle);		// Call it self to read internal nodes of left side
+		
+		if(node.book.title.indexOf(booktitle) != -1)	// Check book title of each books has key title
+		bks.add(node.book);								// if true,then add it into the list
+		
+		readNodes(node.right,booktitle);	// Call it self to read internal nodes of right side
+		
+	}	
